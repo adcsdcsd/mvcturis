@@ -1,0 +1,53 @@
+# =========================
+# ASP.NET Core / MVC
+# =========================
+bin/
+obj/
+out/
+publish/
+*.dll
+*.exe
+*.pdb
+*.dbmdl
+*.cache
+*.log
+*.tmp
+
+# =========================
+# Entity Framework Core
+# =========================
+Migrations/
+
+# =========================
+# IDEs
+# =========================
+.vscode/
+.vs/
+*.user
+*.suo
+
+# =========================
+# Configuración local
+# =========================
+appsettings.Development.json
+
+# =========================
+# DinkToPdf / wkhtmltox
+# =========================
+wkhtmltox/
+*.pdf
+
+# =========================
+# Paquetes NuGet
+# =========================
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.fragment.lock.json
+
+# =========================
+# Archivos temporales de publicación
+# =========================
+wwwroot/dist/
+wwwroot/lib/
