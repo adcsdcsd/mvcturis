@@ -1,0 +1,12 @@
+/////////////7
+ver datos de l a tabla SELECT 
+    COLUMN_NAME AS NombreColumna,
+    DATA_TYPE AS TipoDato,
+    CHARACTER_MAXIMUM_LENGTH AS Longitud,
+    IS_NULLABLE AS EsNulo
+FROM 
+    INFORMATION_SCHEMA.COLUMNS
+WHERE 
+    TABLE_NAME = 'Usuarios';
+////////////////////////////////////////////77
+

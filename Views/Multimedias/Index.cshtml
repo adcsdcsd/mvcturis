@@ -1,0 +1,87 @@
+@model List<Kempery.Models.Multimedia>
+@{
+    ViewData["Title"] = "Multimedia";
+}
+
+<h2 class="text-white">Lista de Contenidos Multimedia</h2>
+
+<!-- ✅ Botón que abre el modal para agregar nuevo -->
+<button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalAgregarMultimedia">Agregar Multimedia</button>
+
+@if (Model.Any())
+{
+    @foreach (var grupo in Model.GroupBy(m => m.Ubicacion))
+    {
+        <h4 class="text-info mt-4">Ubicación: @grupo.Key</h4>
+
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Link</th>
+                    <th>Link Detallado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in grupo)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td><a href="@item.Link" target="_blank">Ver</a></td>
+                    <td><a href="@item.LinkDetallado" target="_blank">Detalles</a></td>
+                    <td>
+                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Id">Detalles</a>
+
+                        <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar este contenido?')">
+                                Eliminar
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}
+else
+{
+    <div class="alert alert-warning">No se encontraron elementos multimedia.</div>
+}
+
+<!-- ✅ Modal para agregar nuevo multimedia -->
+<div class="modal fade" id="modalAgregarMultimedia" tabindex="-1" aria-labelledby="modalAgregarMultimediaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAgregarMultimediaLabel">Agregar Multimedia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <form asp-action="Create" method="post" class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input class="form-control" name="Nombre" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Ubicación</label>
+                    <input class="form-control" name="Ubicacion" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Link</label>
+                    <input class="form-control" name="Link" type="url" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Link Detallado</label>
+                    <input class="form-control" name="LinkDetallado"  />
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
