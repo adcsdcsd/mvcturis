@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Kempery.Models;
+using kempery.Models;
 
 namespace Kempery.Data
 {
@@ -9,6 +10,8 @@ namespace Kempery.Data
 
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Multimedia> Multimedias { get; set; }
+        public DbSet<ReservaCopropiedad> ReservasCopropiedades { get; set; }
+        public DbSet<Copropiedad> Copropiedades { get; set; }
         
 
        

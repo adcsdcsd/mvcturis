@@ -1,0 +1,47 @@
+@model IEnumerable<Kempery.Models.ReservaCopropiedad>
+
+@{
+    ViewData["Title"] = "Reservas de Copropiedades";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Copropiedad</th>
+            <th>Fecha Entrada</th>
+            <th>Fecha Salida</th>
+            <th>Habitaciones</th>
+            <th>Costo Total</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.UsuarioId?</td>
+            <td>@item.CopropiedadId?</td>
+            <td>@item.FechaEntrada.ToString("dd/MM/yyyy")</td>
+            <td>@item.FechaSalida.ToString("dd/MM/yyyy")</td>
+            <td>
+                Sencillas: @item.HabSencillas <br />
+                Dobles: @item.HabDobles <br />
+                Triples: @item.HabTriples
+            </td>
+            <td>$@item.CostoTotal</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a>
+                @* Si quieres agregar Editar o Eliminar:
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                *@
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
